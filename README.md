@@ -1,3 +1,5 @@
+## Intro to CNN
+
 Convolutional Neural Networks (CNNs) are a powerful class of deep learning models designed specifically for processing grid-like data, such as images. They've revolutionized computer vision tasks, from image classification to object detection. In this post, we'll dive into the fundamental concepts of CNNs and how they work.
 
 One significant challenge with regular neural networks is the fact that with the size of image, the number of parameters scales very very quickly. Imagine the huge complexity of the network if you have an image of say 200x200x3 which would mean we have 120k weights (this is all taken from the cs231n course. I have left a link to it at the bottom of the page). 
@@ -11,7 +13,8 @@ Below is a rough sketch (made by yours truly) of a regular neural network. We ha
 <img src="images/neural_net_sketch.png" alt="Sketch of a neural network" />
 
 Now let me show you what a ConvNet looks like (rough sketch btw)
-![[convnet.jpeg]]
+
+<img src="images/convnet.png" alt="Sketch of a neural network" />
 
 (ok so i wasn't able to make a rough sketch on my own, so i got this diagram from <a href="https://editor.analyticsvidhya.com/uploads/90650dnn2.jpeg">here</a> that shows it a lot better)
 
@@ -62,20 +65,14 @@ each filter has $5*5*3 + 1 = 76$ params and so 10 of them will have 760.
 
 I found a great visualization of this layer <a href="https://openlearninglibrary.mit.edu/assets/courseware/v1/cda92ed2c6672271916e8cb8974af568/asset-v1:MITx+6.036+1T2019+type@asset+block/notes_conv_nets_slides.pdf">here</a>
 I will be pasting a ss from one of those slides
-![[conv_layer.png]]
-![[convlayer_2.png]]
+
+<img src="images/conv_layer.png" alt="Sketch of a neural network" />
+
+<img src="images/convlayer_2.png" alt="Sketch of a neural network" />
+
 above image taken from this paper <a href="https://link.springer.com/article/10.1007/s10462-024-10721-6">link</a>
 
 **Recap:** To sum up, convolution helps us detect features in images using filters that slide across the input.
-
-#### Implementation of Conv Layer in Python
-I am going to implement a simple conv layer here to demonstrate the logic and mathematical concepts we discussed earlier. To start with, I am going to put a cheat sheet here to help yall much better understand how exactly numpy works 
-
-[[Numpy Cheat Sheet]]
-
-So lets start with the forward pass. The first step I am going to take here is checking for zero-padding. As we discussed earlier, zero-padding will add a few extra rows and columns to your input in order to be able to capture features from the edges of the images. 
-
-
 
 ### Pooling Layer
 Essentially, the pooling layer downsamples the input while maintaining most of the important features/aspects of the image. 
@@ -88,10 +85,12 @@ Output:
 - $W_2 = (W-F)/S+1$
 - $H_2 = (H-F)/S+1$
 - $D_2=D_1$
+
 #### Max pooling
 We use a filter of size F and within the spatial area of the filter, we choose the max value within the region. The visualization below does a brilliant job of simplifying the concept.  
 
-![[max-pooling.png]]
+<img src="images/max-pooling.png" alt="Sketch of a neural network" />
+
 ##### Effects/Reasons to use
 When the dimensions of the input get reduced, the number of input values fall which in turn also reduce the number of parameters and that in turn reduces number of computationn which in turn also prevents overfitting 
 
@@ -107,11 +106,13 @@ Works similar to max pooling except in each spatial area covered by the filter, 
 To get even more detailed information as well as a detailed implementation of this layer you can check out this <a href="https://blog.paperspace.com/pooling-in-convolutional-neural-networks/"> link </a>
 
 **Recap:** Pooling layers downsample the feature maps, reducing computational load while preserving important information.
+
 ### Flattening Layer
 
 Extremely crucial layer and it is placed between conv/pooling layer and the fully connected layer. Why is it crucial ? Because the output from conv/pooling layer is a 3D output and a FC Layer does <span style="color:red">NOT</span> like that. It can only take in a 1D input so we need to squish the 3D output into 1D. 
 
-![[flattening_layer.png]]
+<img src="images/flattening_layer.png" alt="Sketch of a neural network" />
+
 Source: <a href="https://www.superdatascience.com/blogs/convolutional-neural-networks-cnn-step-3-flattening">link</a>
 
 Input: 
@@ -132,7 +133,11 @@ Always use the flattening layer just before the FC Layer.
 
 #### Fully Connected Layer
 Aaaand we have arrived to the last layer of the CNN, the fully connected layer. 
-This is where the 'brain' of the cnn processes all the features obtained so far. To keep it simple and easy to understand I will keep this part to the point: 
+This is where the 'brain' of the cnn processes all the features obtained so far. 
+
+<img src="images/fc_layer.jpg" alt="Sketch of a neural network" />
+
+To keep it simple and easy to understand I will keep this part to the point: 
 
 - We initialize weights and biases in the FC Layer. Every neuron in the FC layer connects to every feature in the input.
 - Each connection has a 'weight' and every neuron has a 'bias'. This follows the same concept as a regular neural network
@@ -141,6 +146,7 @@ This is where the 'brain' of the cnn processes all the features obtained so far.
 - The output from the activation function will be the probability of the input being a specific class. The output neuron with the highest probability is the predicted class.
 
 **Recap:** Fully connected layers take the flattened input and perform high-level reasoning, ultimately producing the network's final output.
+
 ## Next steps
 Well what I described here is the first half of what goes on in a CNN. This process is known as the forward propagation or the forward pass. The other half is known as the backpropagation. Given how huge of a topic backprop is, I will be making a separate blog/article on it which will come out in a few weeks. To summarize backprop, it is basically the neural network learning from its mistakes. 
 
