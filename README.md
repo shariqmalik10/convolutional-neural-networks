@@ -7,7 +7,8 @@ What is the solution ? Pass in the image <b>as an image</b>. This may sound conf
 Now that we understand the basic idea, let's look at how a CNN is structured
 This section will make things a whole lot clear to understand (hopefully). 
 Below is a rough sketch (made by yours truly) of a regular neural network. We have an input layer, then few hidden layers and lastly the output layer. Simple and straightforward right ? Now imagine 120,000 neurons in the input layer (truly frightening thought)
-![[neural_net_sketch.png]]
+
+![[images/neural_net_sketch.png]]
 
 Now let me show you what a ConvNet looks like (rough sketch btw)
 ![[convnet.jpeg]]
