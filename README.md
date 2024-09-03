@@ -14,7 +14,7 @@ Below is a rough sketch (made by yours truly) of a regular neural network. We ha
 
 Now let me show you what a ConvNet looks like (rough sketch btw)
 
-<img src="images/convnet.png" alt="Sketch of a neural network" />
+<img src="images/convnet.jpeg" alt="Sketch of a neural network" />
 
 (ok so i wasn't able to make a rough sketch on my own, so i got this diagram from <a href="https://editor.analyticsvidhya.com/uploads/90650dnn2.jpeg">here</a> that shows it a lot better)
 
